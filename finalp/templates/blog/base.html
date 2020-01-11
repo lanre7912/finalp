@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>blog</title>
+  <link href="{% static 'blog/css/admin.css' %}" rel="stylesheet">
+
+</head>
+<header>
+   <h1><a href="{% url 'final_app:index' %}" class="highlight"><img src="{% static 'blog/image/logo.png' %}"></a></h1>
+  <div class="nav">
+    <ul>
+      {% if user.is_authenticated %}
+        <li><a href="{% url 'blog:create' %}">Create Post</a></li>
+        <li><a href="{% url 'blog:list' %}">Post List</a></li>
+        <li><a href="{% url 'backend:change_password' %}">Change Password</a></li>
+        <li><a href="{% url 'blog:view_profile' %}">View Profile</a></li>
+        <li><a href="{% url 'backend:logout' %}">Log out</a></li>
+        <li><p>Hi {{ user.username }}</p></li>
+      {% else %}
+      <li><a href="{% url 'backend:login' %}">Log in</a></li>
+      <li><a href="{% url 'backend:register' %}">Sign up</a></li>
+      {% endif %}
+    </ul>
+    
+  </div>
+</header>
+<body>
+	<div class="wrapper">
+
+    {% block content %}
+
+
+    {% endblock %}
+	
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="{% static 'blog/js/slugify.js' %}"></script>
+  <script src="{% static 'blog/js/jquery.js' %}"></script>
+  <!-- <script src="{% static 'blog/js/popper.min.js' %}"></script> -->
+  <script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

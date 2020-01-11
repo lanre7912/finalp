@@ -1,0 +1,44 @@
+{% extends 'blog/base.html'%}
+{% load static %}
+
+<!DOCTYPE html>
+{% block title %}
+Article
+{% endblock %}
+
+
+{% block content %}
+<h1>Article Details</h1>
+<div class="article_detail">
+	<div class="article">
+		<h2>{{article.title}}</h2><br>
+		<img src="{{ article.image.url }}">
+		<p>{{article.content}}</p>
+		<p>{{article.date}}</p>	
+	</div>
+	
+</div>
+<hr>
+{% if user.is_authenticated %}
+	<a class="btn btn-default" href="{% url 'blog:add_comment' slug=article.slug %}">Add comment</a>
+{% else %}
+	<a class="btn btn-default" href="{% url 'backend:login' %}">Add comment</a>
+{% endif %}
+{% for comment in article.comments.all %}
+{% if user.is_authenticated or comment.approved_comment %}
+	<div class="comment">
+		<div class="date">
+			{{ comment.date}}
+			{% if not comment.approved_comment %}
+				<a href="{% url 'comment_remove' slug=comment.slug %}"><i class="fa fa-times"></i></a>
+				<a href="{% url 'comment_approve' slug=comment.slug %}"><i class="fa fa-check"></i></a>
+			{% endif %}
+		</div>
+		<strong>{{ comment.author }}</strong>
+		<p>{{ comment.content|linebreaks }}</p>
+	</div>
+	{% endif %}
+{% empty %}
+	<p>Be the first to comment :(</p>
+{% endfor %}
+{% endblock %}

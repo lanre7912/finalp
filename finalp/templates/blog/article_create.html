@@ -1,0 +1,24 @@
+{% extends 'blog/base.html'%}
+{% load static %}
+
+<!DOCTYPE html>
+{% block title %}
+Article
+{% endblock %}
+
+
+{% block content %}
+<h1>Create Article</h1>
+<div class="article_create">
+	{% if user.is_authenticated %}
+	<form class="site-form" method="POST" action="{% url 'blog:create' %}" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{form}}
+		<input type="submit" value="Create">
+	</form>
+	{% else %}
+		<li><a href="{% url 'backend:login' %}">Create Post</a></li>
+	{% endif %}
+</div>
+<script src="{% static 'blog/js/slugify.js' %}"></script>
+{% endblock %}

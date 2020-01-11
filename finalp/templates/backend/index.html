@@ -1,0 +1,201 @@
+{% extends 'backend/base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+
+  
+    {% block title %}
+    Dashboard
+    {% endblock %}
+
+
+  <body id="admin">
+    {% block content %}
+      <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3" id="top-sidebar">
+          <a href="{% url 'backend:dashboard' %}">
+            <img src="{% static 'backend/images/admin-logo.png' %}" class="img-responsive">
+          </a>
+        </div>
+        <div class="col-sm-9" id="top-content">
+          <div class="status pull-right">
+            <img src="{% static 'backend/images/user.jpg' %}" class="img-circle">
+            <div class="userStatus">
+              <a class="userStatus dropdown-toggle" data-toggle="dropdown" id="userStatus">
+                  {{ user.username }}
+                   <span class="caret"></span>
+              
+              </a>
+              <a href="{% url 'final_app:index' %}" id="back">Back to main site</a>
+              <ul class="dropdown-menu">
+               <li><a href="{% url 'backend:logout' %}">Log Out</a></li>
+               <li><a href="{% url 'backend:change_password' %}">Change Password</a></li>
+               <!-- <li><a href="{% url 'backend:add_user' %}">Edit Profile</a></li> -->
+               <li><a class="nav-link text-white" href="{% url 'backend:view_profile' %}">View Profile</a></li>
+               <li><a class="nav-link text-white" href="{% url 'backend:edit_form' %}">Edit Profile</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3" id="adim-sidebar">
+          <div class="row">
+            <div class="col-sm-3">
+              <img src="{% static 'backend/images/user.jpg' %}" class="img-circle">
+            </div>
+            <div class="col-sm-9">
+              <span>{{ user.username }}</span><br>
+              <span class="fa fa-circle text-success"></span>
+              Online<br>
+            </div>
+          </div>
+          <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                   <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                     Posts
+                     <span class="pull-right"> 
+                       <span class="fa fa-angle-left"></span>
+                     </span>
+                   </a>
+                </h4>
+              </div>
+              <div id="collapse1" class="panel-collapse collapse in">
+                <div class="panel-body">
+                  <ul class="nav">
+                    <li>
+                      <a href="{% url 'final_app:post_new' %}">
+                        <span class="fa fa-circle-o"></span>
+                         Add Post
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{% url 'final_app:post_edit' %}">
+                        <span class="fa fa-circle-o"></span>
+                        View Posts
+                      </a>
+                    </li> 
+                    
+                  </ul>
+                </div>
+              </div>
+            </div>
+           <div class="panel panel-default">
+             <div class="panel-heading">
+               <h4 class="panel-title">
+                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                   Category
+                   <span class="pull-right"> 
+                     <span class="fa fa-angle-left"></span>
+                   </span>
+                 </a>
+               </h4>
+             </div>
+             <div id="collapse2" class="panel-collapse collapse">
+               <div class="panel-body">
+                 <ul class="nav">
+                   <li>
+                     <a href="{% url 'backend:add_category' %}">
+                       <span class="fa fa-circle-o"></span>
+                       Add Category
+                     </a>
+                   </li>
+                   <li>
+                     <a href="{% url 'backend:view_category' %}">
+                       <span class="fa fa-circle-o"></span>
+                       View Category
+                     </a>
+                   </li>
+                 </ul>
+               </div>
+             </div>
+           </div>
+           <div class="panel panel-default">
+             <div class="panel-heading">
+               <h4 class="panel-title">
+                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                 Users</a>
+               </h4>
+             </div>
+             <div id="collapse3" class="panel-collapse collapse">
+               <div class="panel-body">
+                 <ul class="nav">
+                   <li><a href="{% url 'backend:add_user' %}">Add User</a></li>
+                   <li><a href="{% url 'backend:view_users' %}">View Users</a></li>
+                 </ul>
+               </div>
+             </div>
+           </div>
+          </div>
+        </div>
+        <div class="col-sm-9" id="admin-main-content">
+          <div class="row">
+            <div class="col-sm-2">
+             <div class="inner-box">
+               <a href=""> 
+                <i class="fa fa-lock"></i> 
+                 <span>4</span>
+                <h4> Super Users</h4>
+               </a>
+             </div>
+            </div> 
+            <div class="col-sm-2">
+             <div class="inner-box">
+               <a href=""> 
+                <i class="fa fa-users"></i>
+                <span>15</span>
+                <h4>Regular Users</h4>
+               </a>
+             </div>
+            </div> 
+            <div class="col-sm-2">
+             <div class="inner-box">
+               <a href=""> 
+                <i class="fa fa-male"></i> 
+                 <span>10</span>
+                 <h4> Male</h4>
+                 <span class="little-text">Subscribers</span>
+               </a>
+             </div>
+            </div> 
+            <div class="col-sm-2">
+             <div class="inner-box">
+               <a href=""> 
+                <i class="fa fa-female"></i> 
+                <span>9</span>
+                <h4>Female</h4>
+                <span class="little-text">Subscribers</span>
+               </a>
+             </div>
+            </div> 
+            <div class="col-sm-2">
+             <div class="inner-box">
+               <a href=""> 
+                <i class="fa fa-pencil-square-o"></i>
+                <span>50</span>
+                <h4>Posts</h4>
+               </a>
+             </div>
+            </div>
+            <div class="col-sm-2">
+             <div class="inner-box">
+               <a href=""> 
+                <i class="fa fa-object-group"></i>
+                <span>10</span>
+                <h4>Categories</h4>
+               </a>
+             </div>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+
+    </div>
+    {% endblock %}
+    
+
+  </body>
