@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates") 
 STATIC_DIR = os.path.join(BASE_DIR, "static") 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
@@ -21,7 +21,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '54ps(t^to1lmmtd_*^)s4sa%=eaa-+cqjs=q2y0h50&#og#t3z'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -110,12 +110,7 @@ WSGI_APPLICATION = 'finalp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+
 
 
 # Password validation
